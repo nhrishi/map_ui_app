@@ -1,0 +1,22 @@
+1. Create a project folder
+2. Create a package.json using "npm init"
+3. Install express and concurrently packages
+3.a npm i express concurrently
+3.b add entries under dependencies if not added auto
+4. INstall nodemon
+4.a npm i nodemon --save-dev
+4.b add entries under devdependencies if not added auto
+5. Create server.js and basic code
+6. Add start scripts in server.json
+7. Run "npm run server" to test
+8. install react client "npm i -g create-react-app
+9. create-react-app client
+10. add proxy in client package.json
+11. 
+
+
+git --
+git add *
+git commit -m "first commit"
+https_proxy="http://eu-chst-proxy.eu.novartis.net:2010/" git push -u origin master
+
