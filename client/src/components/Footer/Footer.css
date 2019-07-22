@@ -1,0 +1,36 @@
+.footer {
+	position: fixed;
+	width: 100%;
+	background: #2765c4;
+	height: 6%;
+	bottom: 0;
+	padding: 0;
+	left: 0;
+	box-shadow: 1px 0px 7px rgba(0, 0, 0.5, 0.9);
+}
+
+.footer_logo ul {
+	list-style: none;
+	top:0;
+	left:0;
+	margin: 8px;
+	padding: 0.5px 1px;
+	display: flex;
+	
+}
+
+.footer_logo li {
+	align-self: center;
+}
+
+.footer_logo img {
+	
+	height: 30px;
+	width: 150px;
+	background: transparent;
+	
+}
+
+.NovartisLogo {
+	background-image: url(./novartis.png);
+}

@@ -1,0 +1,14 @@
+.bodystyle {
+	position: fixed;
+	top:8%;
+	left:0;
+	width: 100%;
+	background:grey;
+	height: 86%;
+	box-shadow: none;		
+}
+
+.bodystyle ul {
+	list-style: none;
+
+}

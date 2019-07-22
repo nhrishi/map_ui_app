@@ -1,21 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Customers from './components/customers/customer';
+import Header from './components/Header/Header';
+import SideDrawer from './components/SideDrawer/SideDrawer';
+import Backdrop from './components/Backdrop/Backdrop';
+import Footer from './components/Footer/Footer';
+import Body from './components/Body/Body';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        
-        <Customers/>
-      </div>
-    );
-  }
+
+	state = {
+		sideDrawerOpen: false
+	};
+
+	drawerToggleClickHandler = () => {
+		this.setState((prevState) => {
+			return { sideDrawerOpen: !prevState.sideDrawerOpen };
+
+		});
+	};
+
+	backdropClickHandler = () => {
+		this.setState({ sideDrawerOpen: false });
+	}
+
+	render() {
+		let backdropVar;
+
+		if (this.state.sideDrawerOpen) {
+			backdropVar = <Backdrop click={this.backdropClickHandler} />;
+		}
+
+		
+		return (
+			<div style={{ height: '100%', width: '100%' }}>
+
+				<Header drawerClickHandler={this.drawerToggleClickHandler} />
+				<Footer />
+				<SideDrawer show={this.state.sideDrawerOpen} />
+				{backdropVar}
+				<Body />
+			</div>
+		);
+	}
 }
 
 export default App;
