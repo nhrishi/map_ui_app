@@ -7,8 +7,8 @@
 6 silly lifecycle myfirst-boilerplate@1.0.0~preserver: no script for preserver, continuing
 7 info lifecycle myfirst-boilerplate@1.0.0~server: myfirst-boilerplate@1.0.0
 8 verbose lifecycle myfirst-boilerplate@1.0.0~server: unsafe-perm in lifecycle true
-9 verbose lifecycle myfirst-boilerplate@1.0.0~server: PATH: /usr/share/npm/bin/node-gyp-bin:/home/hrishi/UI/map_app_latest/node_modules/.bin:/usr/share/npm/bin/node-gyp-bin:/home/hrishi/UI/map_app_latest/node_modules/.bin:/home/hrishi/fabric/fabric-samples/chaincode/bin:/usr/local/go/bin:/home/hrishi/.daml/bin:/home/hrishi/fabric/fabric-samples/chaincode/bin:/usr/local/go/bin:/home/hrishi/.daml/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-10 verbose lifecycle myfirst-boilerplate@1.0.0~server: CWD: /home/hrishi/UI/map_app_latest
+9 verbose lifecycle myfirst-boilerplate@1.0.0~server: PATH: /usr/share/npm/bin/node-gyp-bin:/home/hrishi/UI/map_ui_app/node_modules/.bin:/usr/share/npm/bin/node-gyp-bin:/home/hrishi/UI/map_ui_app/node_modules/.bin:/home/hrishi/fabric/fabric-samples/chaincode/bin:/usr/local/go/bin:/home/hrishi/.daml/bin:/home/hrishi/fabric/fabric-samples/chaincode/bin:/usr/local/go/bin:/home/hrishi/.daml/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+10 verbose lifecycle myfirst-boilerplate@1.0.0~server: CWD: /home/hrishi/UI/map_ui_app
 11 silly lifecycle myfirst-boilerplate@1.0.0~server: Args: [ '-c', 'nodemon ./server/server.js' ]
 12 silly lifecycle myfirst-boilerplate@1.0.0~server: Returned: code: 1  signal: null
 13 info lifecycle myfirst-boilerplate@1.0.0~server: Failed to exec server script
@@ -23,7 +23,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:925:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
 15 verbose pkgid myfirst-boilerplate@1.0.0
-16 verbose cwd /home/hrishi/UI/map_app_latest
+16 verbose cwd /home/hrishi/UI/map_ui_app
 17 error Linux 4.18.0-25-generic
 18 error argv "/usr/bin/node" "/usr/bin/npm" "run" "server"
 19 error node v8.10.0

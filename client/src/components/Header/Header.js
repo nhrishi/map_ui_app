@@ -7,7 +7,7 @@ const header = props => (
 	<header className="header_top">
 		<nav className="header_navigation">
 			<div>
-				<DrawerButton click={props.drawerClickHandler} />
+				<DrawerButton />
 			</div>
 			<div className="header_logo"><a href="/">MAP Distributed Ledger</a></div>
 			<div className="spacer" />

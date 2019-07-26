@@ -1,19 +1,26 @@
 import React from 'react';
 
 import "./SideDrawer.css";
-import Menu from './MenuList'
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { Link } from 'react-router-dom';
+//import { Redirect } from 'react-router'
+//import Dashboard from './scenes/Dashboard/Dashboard';
+//import NotAuthorized from './../../scenes/NotAuthorized/NotAuthorized';
+//import HomePage from './../../scenes/HomePage/HomePage';
 
 const sideDrawer = props => {
-		
-	let drawerClasses = ['side-drawer'];
-	if (props.show) {
-		drawerClasses = ['side-drawer open'];
-	}
-    
-	return(
-		<nav className={drawerClasses}>
-			<Menu/>
-		</nav>
+
+	return (
+
+		<div className="side-drawer">
+			<nav>
+					<MenuList>
+						<MenuItem><Link to={'/'} className="nav-link">Home</Link></MenuItem>
+						<MenuItem><Link to={'/dashboard'} className="nav-link">Dashboard</Link></MenuItem>
+					</MenuList>
+			</nav>
+		</div>
 	);
 };
 
