@@ -120,7 +120,7 @@ organizations:
     # this way. The SDK should allow applications to set the org admin identity via APIs, and only use
     # this route as an alternative when it exists.
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/keystore/fa8e35b206137df38c016a426ed0dbcb4722029dff2a0b2b79725c51a6655e63_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/keystore/210b2673b3687d9e5064c9c399f7fa6ca4f9ee3fc092c5dedd2f15f54d6e54db_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/signcerts/Admin@novartis.example.com-cert.pem
 
@@ -137,7 +137,7 @@ organizations:
     certificateAuthorities:
       - ca-fisher
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/keystore/b8807f3e12164950d18823e6b9ade8e1cafa73821cec419f2be54e3c03bba809_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/keystore/57bee2ca67706b8840c8a45aabcb1d54e0fbe84968fc1893c95a68c1c5318e54_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/signcerts/Admin@fisher.example.com-cert.pem
 
@@ -148,7 +148,7 @@ organizations:
 #
 orderers:
   orderer.example.com:
-    url: grpcs://0.0.0.0:7050
+    url: grpcs://localhost:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -165,30 +165,30 @@ orderers:
 peers:
   peer0.novartis.example.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://0.0.0.0:7051
+    url: grpcs://localhost:7051
 
     grpcOptions:
-      ssl-target-name-override: peer0.novartis.novartis.com
+      ssl-target-name-override: peer0.novartis.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/peers/peer0.novartis.example.com/tls/ca.crt
 
   peer1.novartis.example.com:
-    url: grpcs://0.0.0.0:7056
+    url: grpcs://localhost:7056
     grpcOptions:
       ssl-target-name-override: peer1.novartis.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/peers/peer1.novartis.example.com/tls/ca.crt
 
   peer0.fisher.example.com:
-    url: grpcs://0.0.0.0:8051
+    url: grpcs://localhost:8051
     grpcOptions:
       ssl-target-name-override: peer0.fisher.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/peers/peer0.fisher.example.com/tls/ca.crt
 
   peer1.fisher.example.com:
-    url: grpcs://0.0.0.0:8056
-    eventUrl: grpcs://0.0.0.0:8058
+    url: grpcs://localhost:8056
+    eventUrl: grpcs://localhost:8058
     grpcOptions:
       ssl-target-name-override: peer1.fisher.example.com
     tlsCACerts:

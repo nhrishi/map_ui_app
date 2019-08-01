@@ -31,8 +31,8 @@ app.post(`/api/inventoryCapture`, (req, res) => {
     var username = 'admin';
     var orgname = 'novartis';
     //Register a user 
-   // let reg_message = helper.getRegisteredUser(username, orgname, "true");
-   // console.log(reg_message);
+    let reg_message = helper.getRegisteredUser(username, orgname, "true");
+    console.log(reg_message);
 
     let message = invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, args, username, orgname);
 

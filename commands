@@ -1,0 +1,6 @@
+/etc/hyperledger/fabric-ca-server/fabric-ca-client-config.yaml
+
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+sudo pkill -f node
+
+openssl x509 -noout -text -in artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/peers/peer0.novartis.example.com/tls/ca.crt
