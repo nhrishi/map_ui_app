@@ -1,9 +1,0 @@
-.bodyStyle {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: grey;
-	height: 100%;
-	box-shadow: 1px 0px 7px rgba(0, 0, 0.5, 0.9);
-}

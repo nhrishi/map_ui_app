@@ -1,9 +1,0 @@
-.dashboard_top {
-	position: fixed;
-	top: 500px;
-	left: 100px;
-	width: 50%;
-	background: #2765c4;
-	height: 10%;
-	box-shadow: 1px 0px 7px rgba(0, 0, 0.5, 0.9);
-}

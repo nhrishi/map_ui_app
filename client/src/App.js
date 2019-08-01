@@ -1,29 +1,93 @@
+
 import React, { Component } from 'react';
-import Body from './scenes/Body/Body';
-import { Route, Switch } from "react-router-dom";
-//import { Redirect } from 'react-router'
-import Dashboard from './scenes/Dashboard/Dashboard';
-import NotAuthorized from './scenes/NotAuthorized/NotAuthorized';
-import HomePage from './scenes/HomePage/HomePage';
+//import Foo from './scenes/Foo';
+//import Bar from './scenes/Bar';
+import InventoryCaptureForm from './scenes/InventoryCaptureForm';
+import InventoryDashbaord from './scenes/InventoryDashboard';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
+import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
+import './App.css';
+
+const paperStyle = {
+    height: '85%',
+    width: '85%',
+    margin: '5%',
+    textAlign: 'center',
+    display: 'inline-block'
+};
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            show: null
+        };
+    }
 
-	render() {
+    handleToggle = () => this.setState({ open: !this.state.open });
 
-		return (
-			//<Body />
-			// 			
-				<Body>
-					<Switch>
-						<Route exact path='/' component={HomePage} />
-						<Route path='/dashboard' component={Dashboard} />
-						<Route path='/notAuthorized' component={NotAuthorized} />
-					</Switch>
-				</Body>
+    showBar = () => {
+        this.setState({ show: 'bar', open: false });
+    };
 
+    showFoo = () => {
+        this.setState({ show: 'foo', open: false });
+    };
 
-		);
-	}
+    render() {
+        let content = null;
+        let menuOption = null;
+
+        switch (this.state.show) {
+            case 'foo':
+                content = <InventoryCaptureForm />;
+                menuOption = "Inventory Capture";
+                break;
+
+            case 'bar':
+                content = <InventoryDashbaord />;
+                menuOption = "Inventory Dashboard";
+                break;
+
+            default:
+                content = <h1>Welcome</h1>;
+        }
+
+        return (
+            <div className="App">
+                <AppBar
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    title="MAP Distributed Ledger"
+                    onLeftIconButtonClick={this.handleToggle}
+                />
+                <Drawer
+                    docked={false}
+                    width={200}
+                    open={this.state.open}
+                    onRequestChange={open => this.setState({ open })}
+                >
+                    <AppBar title="Menu" />
+                    <MenuItem id="showFooId" onClick={this.showFoo}>
+                        Inventory Capture
+                    </MenuItem>
+                    <MenuItem id="showBarId" onClick={this.showBar}>
+                        Inventory Dashboard
+                    </MenuItem>
+                </Drawer>
+                <Paper style={paperStyle} zDepth={2}>
+                    <Toolbar style={{ justifyContent: 'left' }}>
+                        <ToolbarTitle text={menuOption} />
+                    </Toolbar>
+                    {content}
+                 
+                </Paper>
+            </div>
+        );
+    }
 }
 
 export default App;
