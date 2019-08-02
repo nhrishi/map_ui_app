@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from "prop-types";
+import axios from 'axios';
 
 
 import CustomTable from './InventoryDashboardGrid';
@@ -48,6 +49,19 @@ export default function CenteredTabs() {
 
     function handleChange(event, newValue) {
         setValue(newValue);
+        event.preventDefault();
+        newValue = '{"selector":{"objectType":"ASSET", "activeInd":"A"}}';
+        console.log("Your data here : ", newValue );
+        axios.post(`http://localhost:5000/api/inventoryDashboard`,  { newValue } )
+          .then(res => {
+            console.log(res);
+            console.log(res.newValue);
+            alert(`You Submitted \n\n${newValue}`);
+          })
+          .catch(error => {
+            console.log("exception in the post request of Inventory Dashboard ", error.response);
+            alert("Error in Capture");
+          })
     }
 
     return (

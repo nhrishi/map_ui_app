@@ -147,7 +147,7 @@ export default function TextFields() {
     Strength: "",
     Unit: "",
     Molecule: "",
-    PackSize: "",
+    PackSize: 0,
     Franchise: "",
     Country: "",
     Source: "",
@@ -164,24 +164,24 @@ export default function TextFields() {
   };
 
   var data = values;
- 
+
   var handleSubmit = event => {
     event.preventDefault();
-    
-console.log("Your data here : ", { data })
-        axios.post(`http://localhost:5000/api/inventoryCapture`, { data } )
+
+    console.log("Your data here : ", { data })
+    axios.post(`http://localhost:5000/api/inventoryCapture`, { data })
       .then(res => {
         console.log(res);
         console.log(res.data);
-        alert(`You Submitted \n\n${ data }`);
+        alert(`You Submitted \n\n${data}`);
       })
       .catch(error => {
-console.log("exception in the post request of Inventory Capture form, ", error.response);
-alert("Error in Capture");
+        console.log("exception in the post request of Inventory Capture form, ", error.response);
+        alert("Error in Capture");
       })
   }
 
-  
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -234,7 +234,7 @@ alert("Error in Capture");
               value={values.PackSize}
               onChange={handleChange("PackSize")}
               type="number"
-              defaultValue="1"
+              defaultValue="0"
               className={classes.textField}
               margin="normal"
               helperText="Number of packs"
