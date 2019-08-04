@@ -54,9 +54,9 @@ export default function CenteredTabs() {
         console.log("Your data here : ", newValue );
         axios.post(`http://localhost:5000/api/inventoryDashboard`,  { newValue } )
           .then(res => {
+            console.log("Query output -->", res);
             console.log(res);
-            console.log(res.newValue);
-            alert(`You Submitted \n\n${newValue}`);
+            //alert(`You Submitted \n\n${newValue}`);
           })
           .catch(error => {
             console.log("exception in the post request of Inventory Dashboard ", error.response);

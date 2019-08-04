@@ -173,7 +173,7 @@ export default function TextFields() {
       .then(res => {
         console.log(res);
         console.log(res.data);
-        alert(`You Submitted \n\n${data}`);
+        //alert(`You Submitted \n\n${data}`);
       })
       .catch(error => {
         console.log("exception in the post request of Inventory Capture form, ", error.response);

@@ -62,11 +62,30 @@ app.post(`/api/inventoryDashboard`, (req, res) => {
     //Register a user 
     let reg_message = helper.getRegisteredUser(username, orgname, "true");
     console.log(reg_message);
-    var message = query.queryChaincode(peer, channelName, chaincodeName, args, fcn, username, orgname);
-    console.log("Query output:: ", message);
-    //let message = invoke.queryChaincode(peers, channelName, chaincodeName, fcn, args, username, orgname);
 
-    res.send(message);
+    query.queryChaincode(peer, channelName, chaincodeName, args, fcn, username, orgname).then(result=>{
+        console.log("Result::", JSON.stringify(result));
+        //let data = JSON.stringify(result);
+        //console.log("data...>", data);
+       // let json_data = JSON.parse(result);
+        //console.log("data...>>", json_data);
+        // for (var i=0; i < json_data.query_result.length; i++ ){
+        //     var record = json_data.query_result[i];
+        //     console.log("Records::" ,record);
+        // }
+
+         for (var key in JSON.parse(result)) {
+             //var record = json_data.query_result;
+             console.log("Record::", result[key]); 
+         }
+
+        res.send(result);
+
+    });
+    //let message = invoke.queryChaincode(peers, channelName, chaincodeName, fcn, args, username, orgname);
+    //data = result[0];
+    //console.log("checking data..", data);
+    //res.send(result[0].data);
 
 });
 
