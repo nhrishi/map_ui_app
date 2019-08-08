@@ -45,8 +45,23 @@ var queryChaincode = async function(peer, channelName, chaincodeName, args, fcn,
 				logger.info(args[0]+' now has ' + response_payloads[i].toString('utf8') +
 					' after the move');
 			}
-			return JSON.parse('{"query_result":' + response_payloads[0] + '}');
-		//	return response_payloads[0];
+		//	return JSON.parse('{"query_result":' + response_payloads[0] + '}');
+		//	return '{"queryresult":' + response_payloads[0] + '}';
+			
+			var resultData = JSON.parse(response_payloads.toString('utf8'));
+			if (resultData.constructor === Array) {
+				resultData = resultData.map(function (item, index) {
+					if (item.data) {
+						console.log("Item Data::",item.data);
+					} else {
+						console.log("item::" , item);
+					}
+				})
+			}
+			
+			return response_payloads[0].toString('utf8');
+
+		//	return response_payloads[0].toString('utf8');
 		} else {
 			logger.error('response_payloads is null');
 			return 'response_payloads is null';

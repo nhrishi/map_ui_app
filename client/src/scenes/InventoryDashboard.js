@@ -1,3 +1,4 @@
+//import React, { Component } from 'react';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -11,93 +12,155 @@ import axios from 'axios';
 
 import CustomTable from './InventoryDashboardGrid';
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <Typography
-        component="div"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        <Box mx="auto" p={5}>
-          {children}
-        </Box>
-      </Typography>
-    );
-  }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired
-  };
 
-  
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      <Box mx="auto" p={5}>
+        {children}
+      </Box>
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
+};
+
+
 const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
+  root: {
+    flexGrow: 1,
+  },
 });
 
+//const [value] = React.useState(0);
+
 export default function CenteredTabs() {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
 
-    function handleChange(event, newValue) {
-        setValue(newValue);
-        event.preventDefault();
-        newValue = '{"selector":{"objectType":"ASSET", "activeInd":"A"}}';
-        console.log("Your data here : ", newValue );
-        axios.post(`http://localhost:5000/api/inventoryDashboard`,  { newValue } )
-          .then(res => {
-            console.log("Query output -->", res);
-            console.log(res);
-            //alert(`You Submitted \n\n${newValue}`);
-          })
-          .catch(error => {
-            console.log("exception in the post request of Inventory Dashboard ", error.response);
-            alert("Error in Capture");
-          })
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  //class CenteredTabs extends Component {
+
+  // constructor() {
+
+  //   super() 
+
+  //   this.state = {
+  //     selectionValue: '0',
+  //     rows: ''
+  //   };
+
+  //   this.handleChange = this.handleChange.blind(this);
+
+  // }
+
+  function handleChange(event, newValue) {
+    setValue(newValue);
+    console.log("New Value", newValue);
+    //event.preventDefault();
+    if (newValue === 0) {
+      newValue = '{"selector":{"objectType":"ASSET", "activeInd":"A"}}';
+    } else if (newValue === 1) {
+      alert("Not good choice!!");
     }
+    
+    console.log("Your data here : ", newValue);
+    axios.post(`http://localhost:5000/api/inventoryDashboard`, { newValue })
+      .then(res => {
+        console.log("Query output -->", res);
+        console.log(res);
+        alert(`You Submitted \n\n ${JSON.stringify(res.data)}`);
 
-    return (
-        <Paper className={classes.root}>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                centered
-            >
-                <Tab label="All" />
-                <Tab label="Available" />
-                <Tab label="ALlocated" />
-                <Tab label="Shipped" />
-                <Tab label="In-Transit" />
-                <Tab label="Delivered" />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-                <CustomTable/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-            <CustomTable/>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-            <CustomTable/>
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-            <CustomTable/>
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-            <CustomTable/>
-            </TabPanel>
-            <TabPanel value={value} index={5}>
-            <CustomTable/>
-            </TabPanel>
-        </Paper>
-    );
+      })
+      .catch(error => {
+        console.log("exception in the post request of Inventory Dashboard ", error.response);
+        alert("Error in Capture");
+      })
+  }
+
+  // function handleChange(event, newValue) {
+  //   setValue(newValue);
+
+  // }
+
+
+  // handleChange = (event) => {
+  //   //setValue(newValue);
+  //   event.preventDefault();
+  //   this.setState({selectionValue: this.event.value})
+
+  //   let newValue = '{"selector":{"objectType":"ASSET", "activeInd":"A"}}';
+  //  //console.log("Your data here : ", this.state.selectionValue);    
+  //   axios.post(`http://localhost:5000/api/inventoryDashboard`, newValue)
+  //     .then(res => {
+  //       console.log("Query output -->", res);
+  //       console.log(res);
+  //       alert(`You Submitted \n\n ${JSON.stringify(res.data)}`);
+  //      // this.setState({rows:res.data});
+
+  //     })
+  //     .catch(error => {
+  //       console.log("exception in the post request of Inventory Dashboard ", error.response);
+  //       alert("Error in Capture");
+  //     })
+  // }
+
+
+  // render() {
+  return (
+    <Paper className={classes.root} >
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <Tab label="All" />
+        <Tab label="Available" />
+        <Tab label="ALlocated" />
+        <Tab label="Shipped" />
+        <Tab label="In-Transit" />
+        <Tab label="Delivered" />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        {/* <CustomTable> res.data</CustomTable> */}
+        <CustomTable />
+
+       </TabPanel>
+      <TabPanel value={value} index={1}>
+        <CustomTable />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <CustomTable />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <CustomTable />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <CustomTable />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <CustomTable />
+      </TabPanel>
+    </Paper>
+  );
+
+  //}
+
+
 }
+
+// export default CenteredTabs;

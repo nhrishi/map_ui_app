@@ -13,6 +13,7 @@
   "author": "Hrishikesh Nashikkar",
   "license": "MIT",
   "dependencies": {
+    "JSONStream": "^1.3.5",
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",

@@ -7,6 +7,7 @@ const cors = require('cors');
 require('./config.js');
 const app = express();
 const port = 5000;
+JSONStream = require('JSONStream')
 console.log("=====================>>> We are in server JS !!!!!!!")
 
 app.get("/", (req, res) => {
@@ -63,23 +64,70 @@ app.post(`/api/inventoryDashboard`, (req, res) => {
     let reg_message = helper.getRegisteredUser(username, orgname, "true");
     console.log(reg_message);
 
-    query.queryChaincode(peer, channelName, chaincodeName, args, fcn, username, orgname).then(result=>{
-        console.log("Result::", JSON.stringify(result));
-        //let data = JSON.stringify(result);
-        //console.log("data...>", data);
-       // let json_data = JSON.parse(result);
-        //console.log("data...>>", json_data);
-        // for (var i=0; i < json_data.query_result.length; i++ ){
-        //     var record = json_data.query_result[i];
-        //     console.log("Records::" ,record);
+    query.queryChaincode(peer, channelName, chaincodeName, args, fcn, username, orgname).then(result => {
+       
+        console.log("result:", result.toString('utf8'));
+        jsonData = JSON.parse(result);
+        //console.log("records:", JSON.parse(result).records[0]);
+        for (var i = 0; i < jsonData.records.length; i++) {
+            var obj = jsonData.records[i];
+            console.log("Object::", obj);
+        }
+
+        // var resultData = JSON.parse(result.toString('utf8'));
+        // if (resultData.constructor === Array) {
+        //     resultData = resultData.map(function (item, index) {
+        //         if (item.data) {
+        //             console.log("Item Data::",item.data);
+        //         } else {
+        //             console.log("item::" , item);
+        //         }
+        //     })
         // }
 
-         for (var key in JSON.parse(result)) {
-             //var record = json_data.query_result;
-             console.log("Record::", result[key]); 
-         }
+        // var jsonData = JSONStream.parse(['rows', /./, 'doc']);
+        // console.log("JSONStream::", jsonData.Key)
 
-        res.send(result);
+        // let data = Buffer.from(result.toString('ascii'), 'ascii');
+        // console.log("data0::", data);
+
+        // data = encodeURI(data.toString('utf8')).replace(/%00/g,"");
+        // console.log("data1::", data);
+
+        // data = JSON.parse(data);
+        // console.log("data2::", data);
+
+        // jsonData = JSON.parse(result);
+        //const buf = Buffer.from(result);
+        //jsonData = JSON.parse(buf.toString());
+        // console.log("jsonData:", jsonData);
+
+        // for (var key in jsonData) {
+        //     console.log("Key::", key);
+        // }
+
+        //jsonData = JSON.parse(JSON.stringify(result));
+        //console.log("JSON DATA", JSON.parse(result.toString())); 
+        //console.log(Object.keys(jsonData));
+        //console.log(Object.values(jsonData));
+        //     outVal = result.toString();
+        //  for ( var i = 0; i < jsonData.length; i++) {
+        //      var obj = jsonData[i];
+        //      console.log(obj);
+        // }
+        // jsonData = JSON.parse(result);
+        // for (var obj in jsonData) {
+        //     if (jsonData.hasOwnProperty(obj)) {
+        //         for (var prop in jsonData[obj]) {
+        //             console.log("test11::", prop);
+        //             if (jsonData[obj].hasOwnProperty(prop)) {
+        //                 console.log(prop + ':' + jsonData[obj][prop]);
+        //             }
+        //         }
+        //     }
+        // }
+
+        res.send(jsonData.records);
 
     });
     //let message = invoke.queryChaincode(peers, channelName, chaincodeName, fcn, args, username, orgname);

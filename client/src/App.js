@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //import Foo from './scenes/Foo';
 //import Bar from './scenes/Bar';
 import InventoryCaptureForm from './scenes/InventoryCaptureForm';
-import InventoryDashbaord from './scenes/InventoryDashboard';
+import InventoryDashboard from './scenes/InventoryDashboard';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -49,7 +49,7 @@ class App extends Component {
                 break;
 
             case 'bar':
-                content = <InventoryDashbaord />;
+                content = <InventoryDashboard />;
                 menuOption = "Inventory Dashboard";
                 break;
 
