@@ -44,6 +44,30 @@ app.post(`/api/inventoryCapture`, (req, res) => {
 
 });
 
+app.post(`/api/mapCapture`, (req, res) => {
+    const inputData = JSON.stringify(req.body);
+    var peers = ['peer0.novartis.example.com'];
+    var chaincodeName = 'map_lifecycle_cc';
+    var channelName = 'mychannel';
+    var fcn = 'invoke';
+    //var collection = 'inventoryCollection';
+    var args = [];
+    args.push("newMAPRequest");
+    args.push("mapCollection");
+    args.push(JSON.stringify(JSON.parse(inputData).data));
+    var username = 'admin';
+    var orgname = 'novartis';
+    //Register a user 
+    let reg_message = helper.getRegisteredUser(username, orgname, "true");
+    console.log(reg_message);
+
+    let message = invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, args, username, orgname);
+
+    res.send(message);
+
+});
+
+
 
 app.post(`/api/inventoryDashboard`, (req, res) => {
     const inputData = JSON.stringify(req.body);

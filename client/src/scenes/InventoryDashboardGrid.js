@@ -20,25 +20,25 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(productName, molecule, strength, presentation, packSize, country, source, owner) {
-  return { productName, molecule, strength, presentation, packSize, country, source, owner };
-}
+// function createData(productName, molecule, strength, presentation, packSize, country, source, owner) {
+//   return { productName, molecule, strength, presentation, packSize, country, source, owner };
+// }
 
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3, 'India', 'GCS', 'PLS'),
-  createData('Donut', 452, 25.0, 51, 4.9, 'India', 'GCS', 'PLS'),
-  createData('Eclair', 262, 16.0, 24, 6.0, 'India', 'GCS', 'PLS'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'India', 'GCS', 'PLS'),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 'India', 'GCS', 'PLS'),
-  createData('Honeycomb', 408, 3.2, 87, 6.5, 'India', 'GCS', 'PLS'),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 'India', 'GCS', 'PLS'),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0, 'India', 'GCS', 'PLS'),
-  createData('KitKat', 518, 26.0, 65, 7.0, 'India', 'GCS', 'PLS'),
-  createData('Lollipop', 392, 0.2, 98, 0.0, 'India', 'GCS', 'PLS'),
-  createData('Marshmallow', 318, 0, 81, 2.0, 'India', 'GCS', 'PLS'),
-  createData('Nougat', 360, 19.0, 9, 37.0, 'India', 'GCS', 'PLS'),
-  createData('Oreo', 437, 18.0, 63, 4.0, 'India', 'GCS', 'PLS'),
-];
+// const rows = [
+//   createData('Cupcake', 305, 3.7, 67, 4.3, 'India', 'GCS', 'PLS'),
+//   createData('Donut', 452, 25.0, 51, 4.9, 'India', 'GCS', 'PLS'),
+//   createData('Eclair', 262, 16.0, 24, 6.0, 'India', 'GCS', 'PLS'),
+//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'India', 'GCS', 'PLS'),
+//   createData('Gingerbread', 356, 16.0, 49, 3.9, 'India', 'GCS', 'PLS'),
+//   createData('Honeycomb', 408, 3.2, 87, 6.5, 'India', 'GCS', 'PLS'),
+//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 'India', 'GCS', 'PLS'),
+//   createData('Jelly Bean', 375, 0.0, 94, 0.0, 'India', 'GCS', 'PLS'),
+//   createData('KitKat', 518, 26.0, 65, 7.0, 'India', 'GCS', 'PLS'),
+//   createData('Lollipop', 392, 0.2, 98, 0.0, 'India', 'GCS', 'PLS'),
+//   createData('Marshmallow', 318, 0, 81, 2.0, 'India', 'GCS', 'PLS'),
+//   createData('Nougat', 360, 19.0, 9, 37.0, 'India', 'GCS', 'PLS'),
+//   createData('Oreo', 437, 18.0, 63, 4.0, 'India', 'GCS', 'PLS'),
+// ];
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -236,6 +236,10 @@ export default function EnhancedTable(props) {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   //const rows = props.children;
+  console.log("Childrens::", props.rows);
+  const rows = [];
+
+  //rows.push(props.rows);
 
   function handleRequestSort(event, property) {
     const isDesc = orderBy === property && order === 'desc';

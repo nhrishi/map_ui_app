@@ -120,7 +120,7 @@ organizations:
     # this way. The SDK should allow applications to set the org admin identity via APIs, and only use
     # this route as an alternative when it exists.
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/keystore/6698fa4e6fd20a1447ca80b4301fad11a37c00af9f6dff20db5167aa65eb4b80_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/keystore/54b36393b4fad05c095ba9f34f5d0cd622f18304cc4bc71b44cdf791025bba05_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/novartis.example.com/users/Admin@novartis.example.com/msp/signcerts/Admin@novartis.example.com-cert.pem
 
@@ -137,7 +137,7 @@ organizations:
     certificateAuthorities:
       - ca-fisher
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/keystore/f898f0d87ba9105eb19beec0602f806421c0c7d48003fdaa188fa2b920b803ea_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/keystore/6f861e90a9999f4bcceae15bb5acb22f5fbe1d63a88d56ea71be7bafda094aa1_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/fisher.example.com/users/Admin@fisher.example.com/msp/signcerts/Admin@fisher.example.com-cert.pem
 
