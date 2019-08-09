@@ -3,17 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import "date-fns";
-//import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button";
-//import Fab from "@material-ui/core/Fab";
-//import { config } from "./config.json";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
-//import Grid from "@material-ui/core/Grid";
 
 import axios from 'axios';
-
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -137,35 +132,36 @@ const MAPType = [
 
 //const uuidv4 = require("uuid/v4");
 const today = new Date().toISOString().substring(0, 10);
+const uuidv4 = require("uuid/v4");
 
 export default function TextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    CreateDate: today,
+    MAPSystemIdentifier: uuidv4(),
     MAPID: "",
     MAPType: "",
     RequestDate: "",
     NoOfPatients: "",
-    Countryofrequest: "",
-    CMR: "",
-    BulkMatCode: "",
-    BatchNum: "",
-    FisherPartNum: "",
-    DrugProd: "",
+    CountryOfRequest: "",
+    CMRID: "",   
+    Product: "",
     Strength: "",
     Molecule: "",
     Quantity: "",
-    DiseaseCondn: "",
+    DiseaseToBeTreated: "",
     Rationale: "",
     Owner: "",
-    AddnRemarks: ""
+    AddnRemarks: "",
+    CreateDate: today
   });
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  var data = JSON.stringify(values, null, 2);
+ 
+  //var data = JSON.stringify(values, null, 2);
+  var data = values;
 //   function handleClick() {
 //     alert(`You Submitted \n\n${data}`);
 //   }
@@ -191,7 +187,7 @@ export default function TextFields() {
       <CssBaseline />
       <Container maxWidth="lg">
         <div style={{ gridColumnEnd: "span 3" }}>
-          <h1 style={{ color: "teal" }}></h1>
+          {/* <h1 style={{ color: "teal" }}>MAP request from </h1> */}
           <form className={classes.container} autoComplete="off">
             <div>
               <TextField
@@ -199,7 +195,7 @@ export default function TextFields() {
                 id="MAPID"
                 label="MAP ID"
                 className={classes.textField}
-                value={values.Product}
+                value={values.MAPID}
                 onChange={handleChange("MAPID")}
                 margin="normal"
               />
@@ -241,12 +237,12 @@ export default function TextFields() {
 
               <TextField
                 required
-                id="Countryofrequest"
+                id="CountryOfRequest"
                 select
                 label="Country of request"
                 className={classes.textField}
-                value={values.Country}
-                onChange={handleChange("Countryofrequest")}
+                value={values.CountryOfRequest}
+                onChange={handleChange("CountryOfRequest")}
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
@@ -264,14 +260,14 @@ export default function TextFields() {
 
               <TextField
                 required
-                id="CMR"
-                label="CMR"
-                value={values.CMR}
-                onChange={handleChange("CMR")}
+                id="CMRID"
+                label="CMR ID"
+                value={values.CMRID}
+                onChange={handleChange("CMRID")}
                 className={classes.textField}
                 margin="normal"
               />
-
+              {/* 
               <TextField
                 required
                 id="BulkMatCode"
@@ -300,13 +296,13 @@ export default function TextFields() {
                 onChange={handleChange("FisherPartNum")}
                 className={classes.textField}
                 margin="normal"
-              />
+              />*/}
               <TextField
                 required
-                id="DrugProd"
+                id="Product"
                 label="Drug product"
-                value={values.DrugProd}
-                onChange={handleChange("DrugProd")}
+                value={values.Product}
+                onChange={handleChange("Product")}
                 className={classes.textField}
                 margin="normal"
               />
@@ -341,10 +337,10 @@ export default function TextFields() {
               />
               <TextField
                 required
-                id="DiseaseCondn"
+                id="DiseaseToBeTreated"
                 label="Disease / condition"
-                value={values.DiseaseCondn}
-                onChange={handleChange("DiseaseCondn")}
+                value={values.DiseaseToBeTreated}
+                onChange={handleChange("DiseaseToBeTreated")}
                 className={classes.textField}
                 margin="normal"
               />
@@ -375,14 +371,14 @@ export default function TextFields() {
               <Divider />
               <TextField
                 required
-                id="Rationale"
-                label="Rationale"
+                id="RationalForRequest"
+                label="Rationale For Request"
                 multiline
                 variant="outlined"
                 rows="4"
                 value={values.Rationale}
-                onChange={handleChange("Rationale")}
-                className={classes.textField1}
+                onChange={handleChange("RationalForRequest")}
+                className={classes.textField}
                 margin="normal"
               />
               <TextField
@@ -394,7 +390,7 @@ export default function TextFields() {
                 variant="outlined"
                 rows="4"
                 onChange={handleChange("AddnRemarks")}
-                className={classes.textField1}
+                className={classes.textField}
                 margin="normal"
               />
             </div>

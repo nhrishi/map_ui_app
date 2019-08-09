@@ -7,15 +7,18 @@ import InventoryDashboard from './scenes/InventoryDashboard';
 import MapCaptureForm from './scenes/MapCaptureForm';
 import MapDashboard from './scenes/MapDashboard';
 import AppBar from 'material-ui/AppBar';
+//import AppBar from './components/AppBar/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import './App.css';
+import { MapProvider } from "./MapContext";
+
 
 const paperStyle = {
     height: '85%',
-    width: '85%',
+    width: '90%',
     margin: '5%',
     textAlign: 'center',
     display: 'inline-block'
@@ -72,47 +75,51 @@ class App extends Component {
             case 'mapDashboard':
                 content = <MapDashboard />;
                 menuOption = "MAP Dashboard";
-                break; 
+                break;
 
             default:
                 content = <h1>Welcome</h1>;
         }
 
         return (
-            <div className="App">
-                <AppBar
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
-                    title="MAP Distributed Ledger"
-                    onLeftIconButtonClick={this.handleToggle}
-                />
-                <Drawer
-                    docked={false}
-                    width={200}
-                    open={this.state.open}
-                    onRequestChange={open => this.setState({ open })}
-                >
-                    <AppBar title="Menu" />
-                    <MenuItem id="showInventoryCaptureId" onClick={this.showInventoryCapture}>
-                        Inventory Capture
-                    </MenuItem>
-                    <MenuItem id="showInventoryDashboardId" onClick={this.showInventoryDashboard}>
-                        Inventory Dashboard
-                    </MenuItem>
-                    <MenuItem id="showMapCaptureId" onClick={this.showMapCapture}>
-                        MAP Request
-                    </MenuItem>
-                    <MenuItem id="showMapDashboardId" onClick={this.showMapDashboard}>
-                        MAP Dashboard
-                    </MenuItem>
-                </Drawer>
-                <Paper style={paperStyle} zDepth={2}>
-                    <Toolbar style={{ justifyContent: 'left' }}>
-                        <ToolbarTitle text={menuOption} />
-                    </Toolbar>
-                    {content}
+             <MapProvider>
 
-                </Paper>
-            </div>
+                <div className="App">
+                    <AppBar
+                        iconClassNameRight="muidocs-icon-navigation-expand-more"
+                        title="MAP Distributed Ledger"
+                        onLeftIconButtonClick={this.handleToggle}
+                    />
+                    {/* <AppBar /> */}
+                    <Drawer
+                        docked={false}
+                        width={200}
+                        open={this.state.open}
+                        onRequestChange={open => this.setState({ open })}
+                    >
+                        <AppBar title="Menu" />
+                        <MenuItem id="showInventoryCaptureId" onClick={this.showInventoryCapture}>
+                            Inventory Capture
+                    </MenuItem>
+                        <MenuItem id="showInventoryDashboardId" onClick={this.showInventoryDashboard}>
+                            Inventory Dashboard
+                    </MenuItem>
+                        <MenuItem id="showMapCaptureId" onClick={this.showMapCapture}>
+                            MAP Request
+                    </MenuItem>
+                        <MenuItem id="showMapDashboardId" onClick={this.showMapDashboard}>
+                            MAP Dashboard
+                    </MenuItem>
+                    </Drawer>
+                    {/* <Paper style={paperStyle} zDepth={2}>
+                        <Toolbar style={{ justifyContent: 'center' }}>
+                            <ToolbarTitle text={menuOption} />
+                        </Toolbar>
+                        {content}
+
+                    </Paper> */}
+                </div>
+             </MapProvider>
         );
     }
 }

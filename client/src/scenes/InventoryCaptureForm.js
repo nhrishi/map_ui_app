@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
@@ -143,7 +143,6 @@ export default function TextFields() {
     CreateDate: today,
     DrugSystemIdentifier: uuidv4(),
     Product: "",
-
     Strength: "",
     Unit: "",
     Molecule: "",

@@ -11,6 +11,7 @@ import axios from 'axios';
 
 
 import EnhancedTable from './InventoryDashboardGrid';
+import useMapContext from "../hooks/useMapContext";
 
 
 function TabPanel(props) {
@@ -51,6 +52,18 @@ export default function CenteredTabs() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const {testStateVal, setInventoryDashboard} = useMapContext();
+
+  // const [rows, setOutput] = React.useState({
+  //   productName: 'test',
+  //   molecule: 'test',
+  //   strength: '100',
+  //   presentation: '20',
+  //   packSize: '10',
+  //   country:'India',
+  //   source: 'GCP',
+  //   owner: 'hrishi'
+  //  });
   var jsonData = "[{'Cupcake', 305, 3.7, 67, 4.3, 'India', 'GCS', 'PLS'}]";
   //class CenteredTabs extends Component {
 
@@ -76,14 +89,17 @@ export default function CenteredTabs() {
     } else if (newValue === 1) {
       alert("Not good choice!!");
     }
-    
+    alert(`test -->`, testStateVal);
     console.log("Your data here : ", newValue);
     axios.post(`http://localhost:5000/api/inventoryDashboard`, { newValue })
       .then(res => {
         //console.log("Query output -->", res);
         //console.log(res);
-        alert(`You Submitted \n\n ${JSON.stringify(res.data)}`);
-        jsonData = JSON.stringify(res.data);
+        //alert(`You Submitted \n\n ${JSON.stringify(res.data)}`);
+        var rows = JSON.parse(JSON.stringify(res.data));
+        console.log("rows",rows );
+        setInventoryDashboard();
+        alert(`test -->`, testStateVal);
       })
       .catch(error => {
         console.log("exception in the post request of Inventory Dashboard ", error.response);

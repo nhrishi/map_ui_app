@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import axios from 'axios';
 
 
-import EnhancedTable from './InventoryDashboardGrid';
+import EnhancedTable from './MapDashboardGrid';
 
 
 function TabPanel(props) {
@@ -72,13 +72,13 @@ export default function CenteredTabs() {
     console.log("New Value", newValue);
     //event.preventDefault();
     if (newValue === 0) {
-      newValue = '{"selector":{"objectType":"ASSET", "activeInd":"A"}}';
+      newValue = '{"selector":{"objectType":"REQUEST", "activeInd":"A"}}';
     } else if (newValue === 1) {
       alert("Not good choice!!");
     }
     
     console.log("Your data here : ", newValue);
-    axios.post(`http://localhost:5000/api/inventoryDashboard`, { newValue })
+    axios.post(`http://localhost:5000/api/mapDashboard`, { newValue })
       .then(res => {
         //console.log("Query output -->", res);
         //console.log(res);
@@ -130,11 +130,11 @@ export default function CenteredTabs() {
         centered
       >
         <Tab label="All" />
-        <Tab label="Available" />
-        <Tab label="ALlocated" />
-        <Tab label="Shipped" />
-        <Tab label="In-Transit" />
-        <Tab label="Delivered" />
+        <Tab label="Initiated" />
+        <Tab label="Approved" />
+        <Tab label="Allocated" />
+        <Tab label="Shipment Initiated" />
+        <Tab label="Closed" />
       </Tabs>
       <TabPanel value={value} index={0}>
         <EnhancedTable rows={jsonData} /> 
